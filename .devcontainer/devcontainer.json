@@ -1,0 +1,47 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "Public TS Algorithm Project",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureSshAgentForwarding": true, // SSHエージェントフォワーディングを有効にする
+      "configureZshAsDefaultShell": true // Zshをデフォルトシェルに設定
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "ms-azuretools.vscode-docker", // Dockerサポート
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "firsttris.vscode-jest-runner"
+      ],
+      "settings": {
+        "[html]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "files.watcherExclude": {
+          "**/.git/objects": true,
+          "**/.git/subtree-cache": true,
+          "**/node_modules": true
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}
